@@ -41,7 +41,9 @@
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
+
     <div class="topPanel"></div>
+    
     <div class="blankContainer">
     
         <form class="container" action="login.php" method="post">
@@ -56,7 +58,7 @@
             <input class="containerInput" type="email" id="email" name="email"><br>
 
             <label class="header2" for="password">Password:</label><br>
-            <input class="containerInput" type="password" id="password" name="password" placeholder="Must at least be 8 characters long"><br>
+            <input class="containerInput" type="password" id="password" name="password"><br>
             
             <div class="showPassword">
                 <input type="checkbox" onclick="showPassword()">Show Password<br>
@@ -64,7 +66,9 @@
 
             <input  class="btn loginBtn" type="submit" value="Login" name="login">
 
-            <div class="register">Don't have an account?<a href="signup.php"> Register Now!</a>
+            <div class="register">
+                Don't have an account? <a href="signup.php"><u>Register Now!</u></a>
+            </div>
             
         </form>
         

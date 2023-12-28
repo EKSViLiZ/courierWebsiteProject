@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (isset($_SESSION["user"])) {
-        header("Location: ../php/home.php");
+        header("Location: home.php");
     }
 
     require_once "../php/index.php";
@@ -84,7 +84,9 @@
 
             <input class="btn signupBtn" type="submit" value="Sign Up" name="submit">
             
-            <div class="login">Already have an Account? <a href="login.php"><u>Login!</u></a></div>
+            <div class="login">
+                Already have an Account? <a href="login.php"><u>Login!</u></a>
+            </div>
 
         </form>
         
