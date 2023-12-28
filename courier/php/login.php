@@ -16,17 +16,19 @@
         $result = mysqli_query($conn, $sql);
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
         
-        if ($user) {
+        if (empty($email) OR (empty($password))) {
+            echo "<div class='alert alertError alertPrimaryCenter'>All fields are required!</div>";
+        } else if ($user){
             if (password_verify($password, $user["password"])) {
                 session_start();
                 $_SESSION["user"] = $user["username"];
                 header("Location: home.php");
                 die();
             } else {
-                echo "<div class='alert alertError'>Password does not match!</div>";
+                echo "<div class='alert alertError alertPrimaryCenter'>Password does not match!</div>";
             }
         } else {
-            echo "<div class='alert alertError'>Email does not match!</div>";
+            echo "<div class='alert alertError alertPrimaryCenter'>Email does not match!</div>";
         }
     }
 ?>
@@ -49,7 +51,7 @@
         <form class="container" action="login.php" method="post">
         
             <div class="logo">
-                <img src="../img/courier_logo.png" alt="Courier Logo" style="width: 185px">
+                <a href="home.php" title="Go to home page"><img src="../img/courier_logo.png" alt="Courier Logo" style="width: 185px"></a>
             </div>
             
             <p class="header1">Login</p>

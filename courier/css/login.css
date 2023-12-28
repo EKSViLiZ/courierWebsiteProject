@@ -12,25 +12,6 @@ body{
 
     background: #E2454A;
 }
-.container{
-    width: 750px;
-    height: 585px;
-
-    border-radius: 8px;
-    background: #DADADA; 
-    padding-top: 12px;
-    padding-left: 80px;
-    padding-right: 80px;
-
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 5px;
-
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;   
-}
 
 .blankContainer{
     width: 750px;
@@ -51,11 +32,52 @@ body{
     box-sizing: border-box;   
 }
 
+.container{
+    width: 750px;
+    height: 585px;
+
+    border-radius: 8px;
+    background: #DADADA; 
+    padding-top: 12px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5px;
+
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;   
+}
+
 .logo{
     position: relative;
     top: 3rem;
     display: grid;
     place-items: center;
+}
+
+.alert{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 1px; 
+}
+
+.alertError{
+    color: #E2454A;
+}
+
+.alertPrimaryCenter{
+    /*Mostly just the position*/
+    position: absolute;
+    top: 19.5rem;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .header1{

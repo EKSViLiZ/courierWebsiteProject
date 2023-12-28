@@ -22,9 +22,9 @@
 
     <div class="container">
 
-        <div class="logo">
-            <img src="../img/courier_logo.png" alt="Courier Logo" style="width: 185px">
-        </div>
+            <div class="logo">
+                <a href="home.php" title="Go to home page"><img src="../img/courier_logo.png" alt="Courier Logo" style="width: 185px"></a>
+            </div>
 
         <div class="aboutUs">
             <p>About Us</p>

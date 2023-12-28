@@ -60,7 +60,7 @@
         <form class="container" action="signup.php" method="post">
         
             <div class="logo">
-                <img src="../img/courier_logo.png" alt="Courier Logo" style="width: 185px">
+                <a href="home.php" title="Go to home page"><img src="../img/courier_logo.png" alt="Courier Logo" style="width: 185px"></a>
             </div>
             
             <p class="header1">Sign Up</p>
@@ -72,7 +72,7 @@
             <input class="containerInput" type="email" id="email" name="email"><br>
 
             <label class="header2" for="password">Password:</label><br>
-            <input class="containerInput" type="password" id="password" name="password" placeholder="Must atleast contain 8 characters minimum.">
+            <input class="containerInput" type="password" id="password" name="password" placeholder="Must at least contain 8 characters minimum.">
 
             <div class="showPassword">
                 <input type="checkbox" onclick="showPassword()">Show Password<br>
