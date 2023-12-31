@@ -43,13 +43,10 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-
     <div class="topPanel"></div>
     
     <div class="blankContainer">
-    
         <form class="container" action="login.php" method="post">
-        
             <div class="logo">
                 <a href="../userType/guest/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary.png" alt="Courier Logo" style="width: 185px"></a>
             </div>
@@ -71,11 +68,9 @@
             <div class="register">
                 Don't have an account? <a href="signup.php"><u>Register Now!</u></a>
             </div>
-            
         </form>
 
         <button onclick="history.go(-1);" class="btn backBtn">Back </button>
-        
     </div>
     
     <script>

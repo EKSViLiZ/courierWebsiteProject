@@ -2,12 +2,17 @@ body{
     background-color: #dadada;
 }
 
+a, a:hover, a:focus, a:active{
+    text-decoration: none;
+    color: inherit;
+}
+
 .topPanel{
-    position: relative;
+    position: fixed;
     padding-right: 20px;
     width: 100%;
     height: 65px;
-    top: -20px;
+    top: -10px;
     left: -8px;
     right: -20px;
 
@@ -15,12 +20,11 @@ body{
     
     z-index: 1;
 }
-
 .logo{ 
     width: 120px;
-    position: absolute;
+    position: fixed;
     float:left;
-    top: 5px;
+    top: -5px;
     left: 25px;
 }
 
@@ -82,53 +86,176 @@ body{
 }
 
 .navigationMenu{
+    width: 166px;
     position: relative;
     display: flex;
     float: left;
     flex-direction: column;
     left: 1rem;
+}
+
+.containerPrimary{
+    top: 5rem;
+    position: relative;
+    margin-left: 12rem;
+    width: 970px;
     
+    z-index: 0;
+}
+
+.catagory{
+    position: relative;
+    width: 970px;
+    height: 300px;
+    padding: 10px;
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+.primaryCategoryTitle{
+    color: #303030;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 8px;
+    letter-spacing: 1px;
+}
+
+.catagoryFlex{
+    display: flex;
+}
+
+.cards{
+    position: relative;
+    height: 250px;
+    width: 311.3px;
+    margin-left: 8px;
+    margin-right: 8px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+.showMoreBtn{
+    top: 15px;
+    left: 26.5rem;
+    
+    position: relative;
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #303030;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 118px;
+
+    cursor: pointer;
+}
+
+.showMoreBtn:hover{
+    color: #303030;
+    background: #eaeaea;
 }
 
 .sidePanelRight{
-    position: relative;
+    position: sticky;
     float: right;
     margin-right: 3rem;
+    margin-top: 6.5rem;
     
     width: 255px;
     height: 445px;
-    top: -20px;;
+    top: 4.5rem;
     left: -15px;
     bottom: -2px;
     
     background: #303030;
     border-radius: 8px;
-}
-
-.containerPrimary{
-    position: relative;
-    margin-left: 12rem;
+    
+    z-index: 1;
 }
 
 .containerSecondary{
     padding: 15px;
 }
 
-.navigationLabel{
-    width: 100%;
+.createPostContainer{
+    margin-top: 25.5rem;
+}
+
+.createBtn{
     position: relative;
-    padding-bottom: 1rem;
-    left: 0;
-    color: #f5f5f5;
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #e2454a;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 220px;
+
+    left: 15px;
+    
+    cursor: pointer;
+}
+
+.createBtn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
+.navigationBtn{
+    position: relative;
+    width: 166px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: -20px;
     text-align: left;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
+
 }
 
-.btn{
+.navigationSelected{
+    color:#303030;
+    background-color: #dadada;
+    padding-left: 20px;
+    left: -20px;
+}
+
+.navigationUnselected{
+    color: #f5f5f5;
+}
+
+.navigationUnselected:hover{
+    color: #f5f5f5;
+    background-color: #505050;
+    padding-left: 20px;
+    left: -20px;
+}
+
+.registerBtn{
     color: #303030;
     text-align: center;
     font-family: inter;
@@ -145,4 +272,124 @@ body{
     width: 70px;
 
     cursor: pointer;
+}
+
+.registerBtn:hover{
+    background: #eaeaea;
+}
+
+.btn{
+    position: relative;
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #e2454a;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 118px;
+
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
+.discussionTitle{
+    position: relative;
+    width: 295px;
+    height: 17px;
+    flex-shrink: 0;
+    letter-spacing: .8px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.parentThread{
+    position: relative;
+    width: 295px;
+    height: 14px;
+    flex-shrink: 0;
+        
+    color: #505050;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.userPoster{
+    position: relative;
+    width: 295px;
+    height: 14px;
+    flex-shrink: 0;
+        
+    color: #505050;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.lastActive{
+    position: relative;
+    width: 295px;
+    height: 17px;
+    flex-shrink: 0;
+    
+    color: #000;
+    text-align: right;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cardContent{
+    position: relative;
+    width: 295px;
+    height: 160px;
+    flex-shrink: 0;
+    
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.readMore{
+    position: relative;
+    width: 295px;
+    height: 14px;
+    flex-shrink: 0;
+        
+    color: #505050;
+    text-align: right;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.relevantBoards{
+    color: #f5f5f5;
 }

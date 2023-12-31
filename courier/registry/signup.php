@@ -51,14 +51,11 @@
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
-
     <div class="topPanel"></div>
 
     <!--Added Blank Container so that the "backBtn" can stay aligned with "container" regardless of magnification-->
     <div class="blankContainer">
-    
         <form class="container" action="signup.php" method="post">
-        
             <div class="logo">
                 <a href="../userType/guest/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary.png" alt="Courier Logo" style="width: 185px"></a>
             </div>
@@ -87,11 +84,9 @@
             <div class="login">
                 Already have an Account? <a href="login.php"><u>Login!</u></a>
             </div>
-
         </form>
         
         <button onclick="history.go(-1);" class="btn backBtn">Back </button>
-        
     </div>
     
 
@@ -108,6 +103,5 @@
     }
     }
     </script>
-
 </body>
 </html>

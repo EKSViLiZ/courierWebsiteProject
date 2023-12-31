@@ -21,11 +21,9 @@
     <div class="topPanel"></div>
 
     <div class="container">
-
             <div class="logo">
                 <a href="../userType/guest/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary.png" alt="Courier Logo" style="width: 185px"></a>
             </div>
-
         <div class="aboutUs">
             <p>About Us</p>
         </div>
@@ -56,9 +54,7 @@
         <a href="signup.php"><button class="btn signupBtn">Sign Up</button></a>
 
         <div class="orDivide">
-            <div class=line></div>
             <p>OR</p>
-            <div class=line></div>
         </div>
 
         <div class="alreadyRegistered">
@@ -68,15 +64,12 @@
         <a href="login.php"><button class="btn loginBtn">Login</button></a>
 
         <div class="orDivide">
-            <div class=line></div>
             <p>OR</p>
-            <div class=line></div>
         </div>
 
         <p class="continueAsGuest"><b>Continue</b></p>
 
         <a href="../userType/guest/home.php"><button class="btn guestBtn">As Guest</button></a>
-
     </div>
 
     <div class="footer"></div>

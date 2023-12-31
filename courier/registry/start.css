@@ -138,6 +138,11 @@ body{
     cursor: pointer;
 }
 
+.btn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
 .footer{
     height: 120px;
     color: #f5f5f5;

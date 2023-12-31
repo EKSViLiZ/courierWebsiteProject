@@ -28,11 +28,11 @@
                 
             <div class="registry">
                 <div class="signup">
-                    <a href="../../registry/start.php"><button class="btn registerBtn">Sign Up</button></a>
+                    <a href="../../registry/start.php"><button class="registerBtn">Sign Up</button></a>
                 </div>
                 
                 <div class="login">
-                    <a href="../../registry/start.php"><button class="btn registerBtn">Login</button></a>
+                    <a href="../../registry/start.php"><button class="registerBtn">Login</button></a>
                 </div>
             </div>
         </div>
@@ -47,49 +47,112 @@
 
         
         <div class="navigationMenu">
-            <label class="navigationLabel">Home</label>
-            <label class="navigationLabel">Followed</label><br>
-            <label class="navigationLabel">Visited</label><br>
-            <label class="navigationLabel">Popular</label><br>
-            <label class="navigationLabel">Recent</label><br>
+            <a href="home.php">
+                <div class="navigationBtn navigationSelected">
+                    Home
+                </div>
+            </a>
+            
+            <a href="followed.php">
+                <div class="navigationBtn navigationUnselected">
+                    Followed
+                </div>
+            </a>
+            
+            <a href="visited.php">
+                <div class="navigationBtn navigationUnselected">
+                    Visited
+                </div>
+            </a>
+            
+            <a href="popular.php">
+                <div class="navigationBtn navigationUnselected">
+                    Popular
+                </div>
+            </a>
+            
+            <a href="recent.php">
+                <div class="navigationBtn navigationUnselected">
+                    Recent
+                </div>
+            </a>
         </div>
         
-    </div>
-    
-    <div class="containerPrimary">
-        <div class="catagory">
-            <label>Followed Threads</label>
-
-            <div class="cards">
-            </div>
-        </div>
-        
-        <div class="catagory">
-            <label>Visited Discussions</label>
-
-            <div class="cards">
-            </div>
-        </div>
-        
-        <div class="catagory">
-            <label>Popular Threads</label>
-
-            <div class="cards">
-            </div>
-        </div>
-        
-        <div class="catagory">
-            <label>Recent Discussions</label>
-
-            <div class="cards">
-            </div>
-        </div>
     </div>
     
     <div class="sidePanelRight">
         <div class="containerSecondary">
-            <label class="navigationLabel">Relevant Boards</label>
-        </div>     
+            <label class="navigationBtn relevantBoards">Relevant Boards</label>
+        </div>
+        
+        <div class="createPostContainer">
+            <a href="newDiscussion.php"><button class="createBtn">Start a Discussion</button></a>
+            
+            <p style="text-align: center;">OR</p>
+            
+            <a href="newThread.php"><button class="createBtn">Create New Thread</button></a>
+        </div>
+    </div>
+    
+    <div class="containerPrimary">
+        <div class="catagory">
+            <label class="primaryCategoryTitle">Followed Threads</label>
+
+            <div class="catagoryFlex">
+                <div class="cards">
+                    <div class="discussionTitle">Discussion Title</div>
+                    <div class="parentThread">Parent Thread</div>
+                    <div class="userPoster">By User</div>
+                    <div class="lastActive">Last Active</div>
+                    <div class="cardContent">Card Content</div>
+                    <div class="readMore">Read More...</div>
+                </div>
+                
+                 <div class="cards">
+                    <label class="discussionTitle"></label>
+                    <label class="parentThread"></label>
+                    <label class="lastActive"></label>
+                    <label class="cardContent"></label>
+                </div>
+                
+                <div class="cards">
+                    <label class="discussionTitle"></label>
+                    <label class="parentThread"></label>
+                    <label class="lastActive"></label>
+                    <label class="cardContent"></label>
+                </div>
+            </div>
+                
+            <a href="followedThreads.php"><button class="showMoreBtn">Show More</button></a>
+                
+        </div>
+        
+        
+        
+        <div class="catagory">
+            <label class="primaryCategoryTitle">Visited Discussions</label>
+
+            <div class="cards">
+            </div>
+        </div>
+        
+        <div class="catagory">
+            <label class="primaryCategoryTitle">Popular Threads</label>
+
+            <div class="cards">
+                <label class="discussionTitle"></label>
+                <label class="parentThread"></label>
+                <label class="lastActive"></label>
+                <label class="cardContent"></label>
+            </div>
+        </div>
+        
+        <div class="catagory">
+            <label class="primaryCategoryTitle">Recent Discussions</label>
+
+            <div class="cards">
+            </div>
+        </div>
     </div>
     
     <div class="footer">

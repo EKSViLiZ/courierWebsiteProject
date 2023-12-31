@@ -152,6 +152,11 @@ body{
     cursor: pointer;
 }
 
+.btn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
 .signupBtn{
     position: relative;
     left: 50%;
