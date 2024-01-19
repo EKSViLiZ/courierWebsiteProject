@@ -97,37 +97,42 @@
     <div class="containerPrimary">
         <div class="catagory">
             <label class="primaryCategoryTitle">Followed Threads</label>
-
+            
             <div class="catagoryFlex">
-                <div class="cards">
-                    <div class="discussionTitle">Discussion Title</div>
-                    <div class="parentThread">Parent Thread</div>
-                    <div class="userPoster">By User</div>
-                    <div class="lastActive">Last Active</div>
-                    <div class="cardContent">Card Content</div>
-                    <div class="readMore">Read More...</div>
-                </div>
-                
-                 <div class="cards">
-                    <label class="discussionTitle"></label>
-                    <label class="parentThread"></label>
-                    <label class="lastActive"></label>
-                    <label class="cardContent"></label>
-                </div>
-                
-                <div class="cards">
-                    <label class="discussionTitle"></label>
-                    <label class="parentThread"></label>
-                    <label class="lastActive"></label>
-                    <label class="cardContent"></label>
-                </div>
-            </div>
-                
-            <a href="followedThreads.php"><button class="showMoreBtn">Show More</button></a>
-                
+            <?php
+                $cardAmount = 0;
+                if($cardAmount != 0){
+                    $x = 0;
+                    while($x < $cardAmount && $x < 3){
+            ?>          
+                        <div class="cards">
+                            <div class="discussionTitle">Discussion Title</div>
+                            <div class="parentThread">Parent Thread</div>
+                            <div class="userPoster">By User</div>
+                            <div class="lastActive">Last Active</div>
+                            <div class="cardContent">Card Content</div>
+                            <div class="readMore">Read More...</div>
+                        </div>
+            <?php
+                        $x++;
+                    }
+                        if($cardAmount > 3){
+            ?>
+                            </div>
+                            <a href="followedThreads.php"><button class="showMoreBtn">Show More</button></a>
+            <?php
+                        }
+                }
+                else{
+                    ?>
+                    <div class="nothingDiv">
+                        <h class="header1">There is no currently available threads.</h>
+                        <p class="p1">Please retry again later or start your own thread.</p>
+                    </div>
+                    <?php
+                }
+            ?>    
         </div>
-        
-        
         
         <div class="catagory">
             <label class="primaryCategoryTitle">Visited Discussions</label>
