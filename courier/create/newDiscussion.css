@@ -1,0 +1,443 @@
+body{
+    background-color: #dadada;
+}
+
+a, a:hover, a:focus, a:active{
+    text-decoration: none;
+    color: inherit;
+}
+
+.topPanel{
+    position: fixed;
+    padding-right: 20px;
+    width: 100%;
+    height: 65px;
+    top: -10px;
+    left: -8px;
+    right: -20px;
+
+    background: #303030;
+    
+    z-index: 1;
+}
+.logo{ 
+    width: 120px;
+    position: fixed;
+    float:left;
+    top: -5px;
+    left: 25px;
+}
+
+.searchBarContainer{
+    top: 55%;
+    padding-right: 20px;
+    position: relative;
+    float: right;
+}
+
+.searchBar{
+    width: 350px;
+    height: 17px;
+    border-radius: 8px;
+}
+.userProfile{
+    top: 20%;
+    margin-right: 4rem;
+    padding-right: 20px;
+    position: relative;
+    float: right;
+}
+
+.guestStatus{
+    width: 100%;
+    color: #dadada;
+    position: relative;
+    float: right;
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+.registry{
+    position: relative;
+}
+
+.signup{
+    position: relative;
+    float: right;
+}
+
+.login{
+    position: relative;
+    float: right;
+}
+
+.sidePanelLeft{
+    position: fixed;
+    float: left;
+    padding-top: 6rem;
+    
+    width: 183px;
+    height: 108%;
+    top: -20px;;
+    left: 0px;
+    bottom: -2px;
+    
+    background: #303030;
+}
+
+.navigationMenu{
+    width: 166px;
+    position: relative;
+    display: flex;
+    float: left;
+    flex-direction: column;
+    left: 1rem;
+}
+
+.containerPrimary{
+    top: 5rem;
+    position: relative;
+    margin-left: 12rem;
+    width: 970px;
+    
+    z-index: 0;
+}
+
+.catagory{
+    position: relative;
+    width: 1000px;
+    height: 300px;
+    padding: 10px;
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+.primaryCategoryTitle{
+    color: #303030;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 8px;
+    letter-spacing: 1px;
+}
+
+.catagoryFlex{
+    display: flex;
+}
+
+.cards{
+    position: relative;
+    height: 250px;
+    width: auto;
+    margin-left: 8px;
+    margin-right: 8px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+.showMoreBtn{
+    top: 15px;
+    left: 26.5rem;
+    
+    position: relative;
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #303030;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 118px;
+
+    cursor: pointer;
+}
+
+.showMoreBtn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
+.sidePanelRight{
+    position: sticky;
+    float: right;
+    margin-right: 3rem;
+    margin-top: 6.5rem;
+    
+    width: 255px;
+    height: 445px;
+    top: 4.5rem;
+    left: -15px;
+    bottom: -2px;
+    
+    background: #303030;
+    border-radius: 8px;
+    
+    z-index: 1;
+}
+
+.containerSecondary{
+    padding: 15px;
+}
+
+.createPostContainer{
+    margin-top: 25.5rem;
+}
+
+.createBtn{
+    position: relative;
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #e2454a;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 220px;
+
+    left: 15px;
+    
+    cursor: pointer;
+}
+
+.createBtn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
+.navigationBtn{
+    position: relative;
+    width: 166px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: -20px;
+    text-align: left;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+.navigationSelected{
+    color:#303030;
+    background-color: #dadada;
+    padding-left: 20px;
+    left: -20px;
+}
+
+.navigationUnselected{
+    color: #f5f5f5;
+}
+
+.navigationUnselected:hover{
+    color: #f5f5f5;
+    background-color: #505050;
+    padding-left: 20px;
+    left: -20px;
+}
+
+.registerBtn{
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 14px;
+    border-radius: 7px;
+
+    height: 25px;
+    width: 70px;
+
+    cursor: pointer;
+}
+
+.registerBtn:hover{
+    background: #eaeaea;
+}
+
+.btn{
+    position: relative;
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #e2454a;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 118px;
+
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
+.discussionTitle{
+    position: relative;
+    width: 295px;
+    height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    letter-spacing: .8px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.parentThread{
+    position: relative;
+    width: 295px;
+    height: 14px;
+    flex-shrink: 0;
+        
+    color: #505050;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.userPoster{
+    position: relative;
+    width: 295px;
+    height: 14px;
+    flex-shrink: 0;
+        
+    color: #505050;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.lastActive{
+    position: relative;
+    width: 295px;
+    height: 17px;
+    flex-shrink: 0;
+    
+    color: #000;
+    text-align: right;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cardContent{
+    position: relative;
+    width: 295px;
+    height: 160px;
+    flex-shrink: 0;
+    
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.readMore{
+    position: relative;
+    width: 295px;
+    height: 14px;
+    flex-shrink: 0;
+        
+    color: #505050;
+    text-align: right;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.relevantBoards{
+    color: #f5f5f5;
+}
+
+.nothingDiv{
+    position: relative;
+    text-align: center;
+    padding-top: 25px;
+    width: 980px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.header1{
+    color: #505050;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.p1{
+    color: #505050;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container{
+    width: 975px;
+    height: 585px;
+
+    border-radius: 8px;
+    background: #f5f5f5; 
+    padding-top: 12px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    position: relative;
+    left: 14rem;
+    top: 5rem;
+
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;   
+}
