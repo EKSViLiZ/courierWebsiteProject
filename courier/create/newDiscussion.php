@@ -2,7 +2,7 @@
     /*Checks if User is already Logged In*/
     session_start();
     
-    if (isset($_SESSION["user"])) {
+    if (!isset($_SESSION["user"])) {
         header("Location: ../member/home.php");
     }
     
@@ -15,6 +15,7 @@
     <title>Start a New Discussion!</title>
     
     <link rel="stylesheet" href="newDiscussion.css">
+    
 </head>
 <body>
     <div class="topPanel">
@@ -92,10 +93,47 @@
             <a href="newThread.php"><button class="createBtn">Create New Thread</button></a>
         </div>
     </div>
-    
-    <form action="newDiscussion.php" class="container" method="post">  
-        
-    </form>
+    <div class="containerPrimary">
+        <label for="mainHeader" class="primaryCategoryTitle">Threads</label>
+        <div class="instruction">
+            <p class="p1">To start a discussion, you must first select a thread and make one from there.</p>
+        </div>
+        <div class="catagoryFlex">
+        <?php
+            require_once "../index/index.php";
+
+            $query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id";
+            $result = mysqli_query($conn, $query);
+            $row=mysqli_fetch_assoc($result);
+
+            //Troubleshooting problem, The first card don't show up. And if there's no more than 1 card, nothing shows up.
+            $cardAmount = mysqli_num_rows($result);
+            if($cardAmount != 0){
+                do{ 
+        ?>
+                <div class="cards">
+                    <div class="discussionTitle"><?php echo($row['header'])?></div>
+                    <div class="parentThread"><?php echo($row['name']) ?></div>
+                    <div class="userPoster"><?php echo($row['username']) ?></div>
+                    <div class="lastActive"><?php echo($row['date_created']) ?></div>
+                    <div class="cardContent"><?php echo($row['body']) ?></div>
+                    <div class="readMore">Read More...</div>
+                </div>
+                <?php
+                }
+            while($row = mysqli_fetch_assoc($result));
+            }
+            else{
+                ?>
+                <div class="nothingDiv">
+                    <h class="header1">There is no currently available threads.</h>
+                    <p class="p1">Please retry again later or start your own thread.</p>
+                </div>
+                <?php
+            }
+        ?>
+        </div>
+    </div>
     
     <div class="footer">
     </div>

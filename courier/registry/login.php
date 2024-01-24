@@ -22,6 +22,8 @@
             if (password_verify($password, $user["password"])) {
                 session_start();
                 $_SESSION["user"] = $user["username"];
+                $_SESSION["email"] = $user["email"];
+                $_SESSION["id"] = $user["id"];
                 header("Location: login.php");
                 die();
             } else {

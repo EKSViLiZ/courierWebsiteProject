@@ -125,18 +125,19 @@ a, a:hover, a:focus, a:active{
 
 .catagoryFlex{
     display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    margin-bottom: 16px;
 }
 
 .cards{
     position: relative;
     height: 250px;
     width: auto;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin: 8px;
     background-color: #f5f5f5;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 8px;
 }
 
 .showMoreBtn{
@@ -366,8 +367,11 @@ a, a:hover, a:focus, a:active{
 .cardContent{
     position: relative;
     width: 295px;
-    height: 160px;
+    height: 150px;
     flex-shrink: 0;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
     color: #000;
     font-family: Inter;
@@ -399,7 +403,7 @@ a, a:hover, a:focus, a:active{
 .nothingDiv{
     position: relative;
     text-align: center;
-    padding-top: 25px;
+    padding-top: 20%;
     width: 980px;
     height: 100px;
     flex-shrink: 0;
@@ -421,6 +425,11 @@ a, a:hover, a:focus, a:active{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.instruction{
+    margin-top: -1%;
+    margin-left: 2%;
 }
 
 .container{

@@ -6,26 +6,6 @@
         header("Location: ../usertype/guest/home.php");
     }
     
-    require_once "../index/index.php";
-    
-    if (isset($_POST["submit"])) {
-        $title = $_POST["title"];
-        $content = $_POST["content"];
-        $byUser = $_SESSION['id'];
-        $threadType = $_POST["thread_type_id"];
-        $dateCreated = date('Y-m-d H:i:s');
-        
-        $sql = "INSERT INTO `thread` (header, body, byUser_id, thread_type_id, date_created) VALUES (? ,? ,? ,? ,?)";
-        $stmt = mysqli_stmt_init($conn);
-        $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
-        if ($prepareStmt) {
-            mysqli_stmt_bind_param($stmt, "ssiis", $title, $content, $byUser, $threadType, $dateCreated);
-            mysqli_stmt_execute($stmt);
-            echo ("<div class='alert alertSuccess alertPrimaryCenter'>Thread Created!</div>");
-        } else {
-            die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start a New Discussion!</title>
     
-    <link rel="stylesheet" href="newThread.css">
+    <link rel="stylesheet" href="newDiscussion2.css">
     
 </head>
 <body>
@@ -42,7 +22,7 @@
         <div class="logo">
             <a href="../userType/guest/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary_alt.png" alt="Courier Logo" style="width: 120px"></a>
         </div>
-       
+        
         <div class="userProfile">
             <label class="guestStatus">Viewing as Guest</label>
             
@@ -113,26 +93,12 @@
             <a href="newThread.php"><button class="createBtn">Create New Thread</button></a>
         </div>
     </div>
-    <form action="newThread.php" class="container" method="post">
+    <form action="newDiscussion.php" class="container" method="post">  
+        <label for="thread" class="p1">Thread:</label>
         <p>
-        <input type="text" class="titleTxtBox" id="title" name="title" placeholder="Thread Title">
-        <div class="threadTypeSelect">
-            <select name="thread_type_id" id="thread_type_id" class="">
-                <option value="" class="">Select Thread Type</option>
-                <?php
-                    $query = 'SELECT * FROM `thread_type` ORDER BY name';
-                    $result = mysqli_query($conn, $query);
-                    
-                    while($row = mysqli_fetch_assoc($result)){
-                ?>
-                <option value="<?php echo $row['id']?>" class=""><?php echo $row['name']?></option>
-                <?php
-                    }
-                ?>
-            </select>
-        </div>
-        <textarea class="contentTxtBox" id="content" name="content" placeholder="Thread Discription"></textarea></p>
-        <button class="post" type="submit" name="submit">Post</button>
+        <input type="text" class="titleTxtBox" id="title" name="title" placeholder="Discussion Title">
+        <textarea class="contentTxtBox" id="content" name="title" placeholder="Discussion Content"></textarea></p>
+        <button class="post">Post</button>
     </form>
     
     <div class="footer">

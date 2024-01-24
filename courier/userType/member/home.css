@@ -1,20 +1,15 @@
 body{
     background-color: #dadada;
+    overflow-y: scroll;
+    min-height: 100vh;
 }
+html{height: 100vh;}
+
+html { overflow-y:hidden; }
 
 a, a:hover, a:focus, a:active{
     text-decoration: none;
     color: inherit;
-}
-
-input[type=text]:focus {
-    outline: none;
-    border: 1px solid #555;
-}
-
-textarea:focus {
-    outline: none;
-    border: 1px solid #555;
 }
 
 .topPanel{
@@ -244,6 +239,7 @@ textarea:focus {
     font-weight: 600;
     line-height: normal;
     letter-spacing: 1px;
+
 }
 
 .navigationSelected{
@@ -316,7 +312,7 @@ textarea:focus {
 .discussionTitle{
     position: relative;
     width: 295px;
-    height: 20px;
+    height: 17px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -431,59 +427,4 @@ textarea:focus {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-
-.container{
-    width: 975px;
-    height: 585px;
-
-    border-radius: 8px;
-    background: #f5f5f5; 
-    padding-top: 12px;
-    padding-left: 80px;
-    padding-right: 80px;
-
-    position: relative;
-    left: 14rem;
-    top: 5rem;
-
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;   
-}
-
-.titleTxtBox{  
-    position: relative;
-    border: 1px solid #ccc;
-    width: 795px;
-    height: 24px;
-    border-radius: 4px;
-    margin-top: -1rem;
-    font-size: 18px;
-    
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.contentTxtBox{
-    position: relative;
-    border: 1px solid #ccc;
-    width: 795px;
-    height: 400px;
-    resize: none;
-    border-radius: 4px;
-    margin-top: 5px;
-    font-size: 16px;
-    
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.threadTypeSelect{
-    position: relative;
-    margin-top: -10px;
 }

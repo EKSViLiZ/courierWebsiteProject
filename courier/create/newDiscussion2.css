@@ -482,8 +482,3 @@ textarea:focus {
     font-weight: 400;
     line-height: normal;
 }
-
-.threadTypeSelect{
-    position: relative;
-    margin-top: -10px;
-}
