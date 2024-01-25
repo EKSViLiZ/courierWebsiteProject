@@ -7,6 +7,16 @@ a, a:hover, a:focus, a:active{
     color: inherit;
 }
 
+input[type=text]:focus {
+    outline: none;
+    border: 1px solid #555;
+}
+
+textarea:focus {
+    outline: none;
+    border: 1px solid #555;
+}
+
 .topPanel{
     position: fixed;
     padding-right: 20px;
@@ -125,19 +135,18 @@ a, a:hover, a:focus, a:active{
 
 .catagoryFlex{
     display: flex;
-    flex-wrap: wrap;
-    width: 1025px;
-    margin-bottom: 16px;
 }
 
 .cards{
     position: relative;
     height: 250px;
     width: auto;
-    margin: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
     background-color: #f5f5f5;
     border-radius: 8px;
     padding: 10px;
+    margin-top: 8px;
 }
 
 .showMoreBtn{
@@ -278,36 +287,10 @@ a, a:hover, a:focus, a:active{
     background: #eaeaea;
 }
 
-.btn{
-    position: relative;
-    color: #303030;
-    text-align: center;
-    font-family: inter;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: 0.8px;
-
-    background: #f5f5f5; 
-    font-size: 20px;
-    border-color: #e2454a;
-    border-radius: 10px;
-
-    height: 35px;
-    width: 118px;
-
-    cursor: pointer;
-}
-
-.btn:hover{
-    color: #303030;
-    background: #eaeaea;
-}
-
 .discussionTitle{
     position: relative;
     width: 295px;
-    height: 22px;
+    height: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -340,7 +323,6 @@ a, a:hover, a:focus, a:active{
     width: 295px;
     height: 14px;
     flex-shrink: 0;
-    margin-top: 3px;
         
     color: #505050;
     font-family: Inter;
@@ -368,11 +350,8 @@ a, a:hover, a:focus, a:active{
 .cardContent{
     position: relative;
     width: 295px;
-    height: 150px;
+    height: 160px;
     flex-shrink: 0;
-    margin-top: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     
     color: #000;
     font-family: Inter;
@@ -404,7 +383,7 @@ a, a:hover, a:focus, a:active{
 .nothingDiv{
     position: relative;
     text-align: center;
-    padding-top: 20%;
+    padding-top: 25px;
     width: 980px;
     height: 100px;
     flex-shrink: 0;
@@ -428,11 +407,6 @@ a, a:hover, a:focus, a:active{
     line-height: normal;
 }
 
-.instruction{
-    margin-top: -1%;
-    margin-left: 2%;
-}
-
 .container{
     width: 975px;
     height: 585px;
@@ -452,8 +426,108 @@ a, a:hover, a:focus, a:active{
     box-sizing: border-box;   
 }
 
-.sidenav {
+.titleTxtBox{  
     position: relative;
+    border: 1px solid #ccc;
+    width: 795px;
+    height: 24px;
+    border-radius: 4px;
+    margin-top: 2rem;
+    font-size: 18px;
+    
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.contentTxtBox{
+    position: relative;
+    border: 1px solid #ccc;
+    width: 795px;
+    height: 325px;
+    resize: none;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 16px;
+    
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.threadTypeSelect{
+    position: relative;
+    margin-top: -10px;
+}
+
+.btn{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1rem;
+
+    color: #303030;
+    text-align: center;
+    font-family: inter;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+
+    background: #f5f5f5; 
+    font-size: 20px;
+    border-color: #e2454a;
+    border-radius: 10px;
+
+    height: 35px;
+    width: 118px;
+
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: #303030;
+    background: #eaeaea;
+}
+
+.alert{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 1px; 
+}
+
+.alertError{
+    color: #E2454A;
+}
+
+.alertPrimaryCenter{
+    position: absolute;
+    top: 35.5rem;
+    z-index: 1;
+    left: 46%;
+    transform: translateX(-50%);
+}
+
+.containerHeader{
+    position: relative;
+    border-radius: 4px;
+    
+    top: 15px;
+    margin-top: -1rem;
+    margin-left: 20rem;
+    font-size: 24px;
+    
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sidenav {
   height: 140px;
   width: 0;
   position: fixed; 
@@ -520,6 +594,7 @@ a, a:hover, a:focus, a:active{
 .profileNav:hover{
     cursor: pointer;
 }
+
 
 .userProfile{
     top: 20%;

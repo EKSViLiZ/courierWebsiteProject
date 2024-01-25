@@ -54,7 +54,7 @@
         <a href="signup.php"><button class="btn signupBtn">Sign Up</button></a>
 
         <div class="orDivide">
-            <p>OR</p>
+            <p>--------------- OR ---------------</p>
         </div>
 
         <div class="alreadyRegistered">
@@ -64,7 +64,7 @@
         <a href="login.php"><button class="btn loginBtn">Login</button></a>
 
         <div class="orDivide">
-            <p>OR</p>
+            <p>--------------- OR ---------------</p>
         </div>
 
         <p class="continueAsGuest"><b>Continue</b></p>

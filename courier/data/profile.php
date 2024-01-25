@@ -7,34 +7,6 @@
     }
     
     require_once "../index/index.php";
-    
-    if (isset($_POST["submit"])) {
-        $title = $_POST["title"];
-        $content = $_POST["content"];
-        $byUser = $_SESSION['id'];
-        $threadType = $_POST["thread_type_id"];
-        $dateCreated = date('Y-m-d H:i:s');
-        
-        $sql = "INSERT INTO `thread` (header, body, byUser_id, thread_type_id, date_created) VALUES (? ,? ,? ,? ,?)";
-        $stmt = mysqli_stmt_init($conn);
-        $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
-        
-        if ($title != ""){
-            if ($threadType != ""){
-                if ($prepareStmt) {
-                    mysqli_stmt_bind_param($stmt, "ssiis", $title, $content, $byUser, $threadType, $dateCreated);
-                    mysqli_stmt_execute($stmt);
-                    echo ("<div class='alert alertSuccess alertPrimaryCenter'>Thread Created!</div>");
-                } else {
-                    die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
-                }
-            } else {
-                echo ("<div class='alert alertError alertPrimaryCenter'>*Must Select a Thread Type*</div>");
-            }
-        } else {
-            echo ("<div class='alert alertError alertPrimaryCenter'>*Title must not be empty*</div>");
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start a New Thread!</title>
     
-    <link rel="stylesheet" href="newThread.css">
+    <link rel="stylesheet" href="profile.css">
     
 </head>
 <body>
@@ -122,26 +94,6 @@
         </div>
     </div>
     <form action="newThread.php" class="container" method="post">
-        <label for="containerHeader" class="containerHeader">Create a Thread</label>
-        <p>
-        <input type="text" class="titleTxtBox" id="title" name="title" placeholder="Thread Title" value="<?php echo (isset($_POST['title'])?$_POST['title']:''); ?>">
-        <div class="threadTypeSelect">
-            <select name="thread_type_id" id="thread_type_id" class="">
-                <option value="" class="">Select Thread Type</option>
-                <?php
-                    $query = 'SELECT * FROM `thread_type` ORDER BY name';
-                    $result = mysqli_query($conn, $query);
-                    
-                    while($row = mysqli_fetch_assoc($result)){
-                ?>
-                <option value="<?php echo $row['id']?>" class=""><?php echo $row['name']?></option>
-                <?php
-                    }
-                ?>
-            </select>
-        </div>
-        <textarea class="contentTxtBox" id="content" name="content" placeholder="Thread Discription"><?php echo (isset($_POST['title'])?$_POST['content']:''); ?></textarea></p>
-        <button class="btn" type="submit" name="submit" style="margin-left: 40%">Post</button>
     </form>
     
     <div class="footer">

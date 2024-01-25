@@ -3,7 +3,7 @@
     session_start();
     
     if (!isset($_SESSION["user"])) {
-        header("Location: ../member/home.php");
+        header("Location: ../registry/start.php");
     }
     
 ?>
@@ -101,7 +101,7 @@
         <?php
             require_once "../index/index.php";
 
-            $query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id";
+            $query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id AND t.byUser_id = u.id";
             $result = mysqli_query($conn, $query);
             $row=mysqli_fetch_assoc($result);
 
