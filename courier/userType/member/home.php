@@ -32,7 +32,7 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <label for="currentUser" class="currentUser"><?php echo($_SESSION['user'])?></label>
-            <a href="../../data/profile.php">Profile</a>
+            <a href="../../data/profile.php?id=<?php echo($_SESSION['id'])?>">Profile</a>
             <a href="../../registry/logout.php">Logout</a>
         </div>
         

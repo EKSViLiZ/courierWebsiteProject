@@ -22,7 +22,7 @@ body{
 
 .container{
     width: 750px;
-    height: 780px;
+    height: 855px;
 
     border-radius: 8px;
     background: #f5f5f5; 
@@ -186,4 +186,17 @@ a, a:hover, a:focus, a:active{
     height: 120px;
     color: #f5f5f5;
     bottom: 0;
+}
+
+.selectStyle{
+    border-style: solid;
+    border-radius: 8px;
+    position: relative;
+    border-radius: 8px;
+    padding: 10px;
+    width: 78%;
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 12px;
+    margin-left: 60px;
 }

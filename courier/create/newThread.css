@@ -627,3 +627,7 @@ textarea:focus {
     top: -2px;
     
 }
+
+.alertSuccess{
+    color: #2e9a2e;
+}

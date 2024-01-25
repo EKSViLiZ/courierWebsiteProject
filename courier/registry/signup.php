@@ -11,6 +11,8 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
         $repeatPassword = $_POST["repeatPassword"];
+        $dateCreated = date('Y-m-d H:i:s');
+        $country = $_POST['country'];
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         
@@ -25,13 +27,14 @@
             echo "<div class='alert alertError alertPrimaryCenter'>Password must atleast have 8 characters minimum!</div>";
         } else if ($rowcount>0) {
             echo "<div class='alert alertError alertPrimaryCenter'>Email already exist!</div>";
+        } else if (empty($country)) {
+            echo "<div class='alert alertError alertPrimaryCenter'>Please select a Country!</div>";
         } else {
-        
-            $sql = "INSERT INTO user (username, email, password) VALUES (? ,? ,?)";
+            $sql = "INSERT INTO user (username, email, password, country_id, date_created) VALUES (? ,? ,? ,? ,?)";
             $stmt = mysqli_stmt_init($conn);
             $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
             if ($prepareStmt) {
-                mysqli_stmt_bind_param($stmt, "sss", $username, $email, $passwordHash);
+                mysqli_stmt_bind_param($stmt, "sssis", $username, $email, $passwordHash, $country, $dateCreated);
                 mysqli_stmt_execute($stmt);
                 echo ("<div class='alert alertSuccess alertPrimaryCenter'>Registered Successfully.</div>");
             } else {
@@ -67,6 +70,23 @@
 
             <label class="header2" for="email">Email Address:</label><br>
             <input class="containerInput" type="email" id="email" name="email"><br>
+            
+            <label for="thread" class="header2">Country:</label>
+            <div class="country">
+                <select name="country" id="country" class="selectStyle">
+                    <option value="" class="">Select Country</option>
+                    <?php
+                        $query = 'SELECT * FROM `country` ORDER BY name';
+                        $result = mysqli_query($conn, $query);
+                        
+                        while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                    <option value="<?php echo $row['id']?>" class=""><?php echo $row['name']?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
+            </div>
 
             <label class="header2" for="password">Password:</label><br>
             <input class="containerInput" type="password" id="password" name="password" placeholder="Must at least contain 8 characters minimum.">
@@ -77,7 +97,6 @@
 
             <label class="header2" for="repeatPassword">Repeat Password:</label><br>
             <input class="containerInput" type="password" id="repeatPassword" name="repeatPassword"><br>
-
 
             <input class="btn signupBtn" type="submit" value="Sign Up" name="submit">
             
