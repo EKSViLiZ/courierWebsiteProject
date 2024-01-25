@@ -18,12 +18,21 @@
         $sql = "INSERT INTO `thread` (header, body, byUser_id, thread_type_id, date_created) VALUES (? ,? ,? ,? ,?)";
         $stmt = mysqli_stmt_init($conn);
         $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
-        if ($prepareStmt) {
-            mysqli_stmt_bind_param($stmt, "ssiis", $title, $content, $byUser, $threadType, $dateCreated);
-            mysqli_stmt_execute($stmt);
-            echo ("<div class='alert alertSuccess alertPrimaryCenter'>Thread Created!</div>");
+        
+        if ($title != ""){
+            if ($content != ""){
+                if ($prepareStmt) {
+                    mysqli_stmt_bind_param($stmt, "ssiis", $title, $content, $byUser, $threadType, $dateCreated);
+                    mysqli_stmt_execute($stmt);
+                    echo ("<div class='alert alertSuccess alertPrimaryCenter'>Thread Created!</div>");
+                } else {
+                    die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
+                }
+            } else {
+                echo ("<div class='alert alertError alertPrimaryCenter'>*Must Select a Thread Type*</div>");
+            }
         } else {
-            die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
+            echo ("<div class='alert alertError alertPrimaryCenter'>*Title must not be empty*</div>");
         }
     }
 ?>
@@ -42,20 +51,19 @@
         <div class="logo">
             <a href="../userType/guest/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary_alt.png" alt="Courier Logo" style="width: 120px"></a>
         </div>
-       
-        <div class="userProfile">
-            <label class="guestStatus">Viewing as Guest</label>
-            
+        
+        <span class="profileNav" onclick="openNav()" style>
+            <div class="userProfile" title="<?php echo($_SESSION['user'])?>">
+                <label class="profile">ID: #<?php echo($_SESSION['id'])?></label>
                 
-            <div class="registry">
-                <div class="signup">
-                    <a href="../registry/start.php"><button class="registerBtn">Sign Up</button></a>
-                </div>
-                
-                <div class="login">
-                    <a href="../registry/start.php"><button class="registerBtn">Login</button></a>
-                </div>
+                <img src="../media/logo/profile.png" alt="profile icon" class="profileImage">
             </div>
+        </span>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <label for="currentUser" class="currentUser"><?php echo($_SESSION['user'])?></label>
+            <a href="../registry/logout.php">Profile</a>
+            <a href="../registry/logout.php">Logout</a>
         </div>
         
         <div class="searchBarContainer">
@@ -114,6 +122,7 @@
         </div>
     </div>
     <form action="newThread.php" class="container" method="post">
+        <label for="containerHeader" class="containerHeader">Create a Thread</label>
         <p>
         <input type="text" class="titleTxtBox" id="title" name="title" placeholder="Thread Title">
         <div class="threadTypeSelect">
@@ -132,10 +141,21 @@
             </select>
         </div>
         <textarea class="contentTxtBox" id="content" name="content" placeholder="Thread Discription"></textarea></p>
-        <button class="post" type="submit" name="submit">Post</button>
+        <button class="btn" type="submit" name="submit" style="margin-left: 40%">Post</button>
     </form>
     
     <div class="footer">
     </div>
+<script class="">
+/* Set the width of the side navigation to 250px */
+function openNav() {
+document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+document.getElementById("mySidenav").style.width = "0";
+} 
+</script>
 </body>
 </html>
