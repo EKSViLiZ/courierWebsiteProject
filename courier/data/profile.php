@@ -98,7 +98,7 @@
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 
-                $query = "SELECT u.*, c.name FROM  `user` u, `country` c WHERE u.id = $id AND u.country_id = c.id";
+                $query = "SELECT u.*, c.name FROM  `user` u, `country` c WHERE u.id = '$id' AND u.country_id = c.id";
                 $result = mysqli_query($conn, $query);
                 $row=mysqli_fetch_assoc($result);
             }
@@ -131,11 +131,10 @@
                 <?php
                     require_once "../index/index.php";
 
-                    $query = "SELECT t.*, t_type.name, u.* FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id AND u.id = '$id' LIMIT 3";
+                    $query = "SELECT t.date_created AS thread_date_created, t.*, t_type.name, u.* FROM `thread` t, `thread_type` t_type, `user` u WHERE t_type.id = t.thread_type_id AND t.byUser_id = u.id AND u.id = $id ORDER BY t.id DESC LIMIT 3";
                     $result = mysqli_query($conn, $query);
                     $row=mysqli_fetch_assoc($result);
 
-                    //Troubleshooting problem, The first card don't show up. And if there's no more than 1 card, nothing shows up.
                     $cardAmount = mysqli_num_rows($result);
                     if($cardAmount != 0){
                         do{ 
@@ -144,7 +143,7 @@
                             <div class="discussionTitle" title="<?php echo($row['header'])?>"><?php echo($row['header'])?></div>
                             <div class="parentThread">Category: <?php echo($row['name']) ?></div>
                             <div class="userPoster">by: <?php echo($row['username']) ?></div>
-                            <div class="lastActive"><?php echo($row['date_created']) ?></div>
+                            <div class="lastActive"><?php echo($row['thread_date_created']) ?></div>
                             <div class="cardContent"><?php echo($row['body']) ?></div>
                             <div class="readMore">Read More...</div>
                         </div>

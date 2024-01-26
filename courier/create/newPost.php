@@ -3,9 +3,49 @@
     session_start();
     
     if (!isset($_SESSION["user"])) {
-        header("Location: ../registry/start.php");
+        header("Location: ../usertype/guest/home.php");
     }
     
+    require_once "../index/index.php";
+    
+    if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    
+    $query = "SELECT t.*, d.discussion_header FROM  `thread` t, `discussion` d WHERE d.id = '$id' AND d.thread_id = t.id";
+    $result = mysqli_query($conn, $query);
+    $row=mysqli_fetch_assoc($result);
+    }
+    
+    $parentThreadHeader = $row['header'];
+    $discussionHeader = $row['discussion_header'];
+    
+    if (isset($_POST["submit"])) {
+        $content = $_POST["content"];
+        $discussion_id = $id;
+        $byUser = $_SESSION['id'];
+        $dateCreated = date('Y-m-d H:i:s');
+        
+        $sql = "INSERT INTO `post` (post_body, discussion_id, byUser_id, date_created) VALUES (? ,? ,? ,?)";
+        $stmt = mysqli_stmt_init($conn);
+        $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
+        
+        
+        if (!empty($content)){
+            if ($prepareStmt) {
+                mysqli_stmt_bind_param($stmt, "ssis", $content, $discussion_id, $byUser, $dateCreated);
+                mysqli_stmt_execute($stmt);
+                $query = "SELECT * FROM `discussion` ORDER BY id DESC LIMIT 1";
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_assoc($result);
+                $discussion_id = ($row['id']);
+                header("Location: ../data/discussion.php?id=$discussion_id");
+            } else {
+                die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
+            }
+        } else {
+            echo ("<div class='alert alertError alertPrimaryCenter'>*Content must not be empty*</div>");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +54,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start a New Discussion!</title>
     
-    <link rel="stylesheet" href="newDiscussion.css">
+    <link rel="stylesheet" href="newPost.css">
     
 </head>
 <body>
@@ -92,50 +132,18 @@
             <a href="newThread.php"><button class="createBtn">Create New Thread</button></a>
         </div>
     </div>
-    <div class="containerPrimary">
-        <label for="mainHeader" class="primaryCategoryTitle">Threads</label>
-        <div class="instruction">
-            <p class="p1">To start a discussion, you must first select a thread and make one from there.</p>
+    <form action="newPost.php?id=<?php echo($id)?> " class="container" method="post">
+        <div class="titleDiv">
+            <label for="containerHeader" class="containerHeader">Create a Reply</label>
         </div>
-        <div class="catagoryFlex">
         <?php
-            require_once "../index/index.php";
-
-            $query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id AND t.byUser_id = u.id ORDER BY header";
-            $result = mysqli_query($conn, $query);
-            $row=mysqli_fetch_assoc($result);
-
-            //Troubleshooting problem, The first card don't show up. And if there's no more than 1 card, nothing shows up.
-            $cardAmount = mysqli_num_rows($result);
-            if($cardAmount != 0){
-                do{ 
         ?>
-                <a href="../data/thread.php?id=<?php echo($row['id'])?>" class="">
-                    <div class="cards">
-                        <div class="discussionTitle" title="<?php echo($row['header'])?>"><?php echo($row['header'])?></div>
-                        <div class="parentThread">Category: <?php echo($row['name']) ?></div>
-                        <div class="userPoster">by: <?php echo($row['username']) ?></div>
-                        <div class="lastActive"><?php echo($row['date_created']) ?></div>
-                        <div class="cardContent"><?php echo($row['body']) ?></div>
-                        <div class="readMore">Read More...</div>
-                    </div>
-                </a>
-                
-                <?php
-                }
-            while($row = mysqli_fetch_assoc($result));
-            }
-            else{
-                ?>
-                <div class="nothingDiv">
-                    <h class="header1">There is no currently available threads.</h>
-                    <p class="p1">Please retry again later or start your own thread.</p>
-                </div>
-                <?php
-            }
-        ?>
-        </div>
-    </div>
+        <label for="thread" class="p1">Thread: <?php echo $parentThreadHeader?></label><br>
+        <label for="discussion" class="p1">Discussion: <?php echo $discussionHeader?></label>
+        <p>
+        <textarea class="contentTxtBox" id="content" name="content" placeholder="Reply Content"></textarea></p>
+        <button class="btn" type="submit" name="submit" style="margin-left: 40%">Post</button>
+    </form>
     
     <div class="footer">
     </div>

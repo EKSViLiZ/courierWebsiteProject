@@ -3,24 +3,32 @@
     session_start();
     
     if (!isset($_SESSION["user"])) {
-        header("Location: ../registry/start.php");
+        header("Location: ../member/home.php");
     }
     
+    require_once "../index/index.php";
+    
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        
+        $query = "SELECT d.*, t.header, u.username FROM `discussion` d, `thread` t, `user` u WHERE d.id = '$id' AND d.thread_id = t.id";
+        $result = mysqli_query($conn, $query);
+        $row=mysqli_fetch_assoc($result);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start a New Discussion!</title>
+    <title>Discussion</title>
     
-    <link rel="stylesheet" href="newDiscussion.css">
-    
+    <link rel="stylesheet" href="discussion.css">
 </head>
 <body>
     <div class="topPanel">
         <div class="logo">
-            <a href="../userType/guest/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary_alt.png" alt="Courier Logo" style="width: 120px"></a>
+            <a href="../userType/member/home.php" title="Go to home page"><img src="../media/logo/courier_logo_primary_alt.png" alt="Courier Logo" style="width: 120px"></a>
         </div>
         
         <span class="profileNav" onclick="openNav()" style>
@@ -46,7 +54,7 @@
     <div class="sidePanelLeft">
 
         <div class="navigationMenu">
-            <a href="../userType/guest/home.php">
+            <a href="../userType/member/home.php">
                 <div class="navigationBtn navigationUnselected">
                     Home
                 </div>
@@ -85,23 +93,36 @@
         </div>
         
         <div class="createPostContainer">
-            <a href="newDiscussion.php"><button class="createBtn">Start a Discussion</button></a>
+            <a href="../create/newDiscussion.php"><button class="createBtn">Start a Discussion</button></a>
             
             <p style="text-align: center;">OR</p>
             
-            <a href="newThread.php"><button class="createBtn">Create New Thread</button></a>
+            <a href="../create/newThread.php"><button class="createBtn">Create New Thread</button></a>
         </div>
     </div>
-    <div class="containerPrimary">
-        <label for="mainHeader" class="primaryCategoryTitle">Threads</label>
-        <div class="instruction">
-            <p class="p1">To start a discussion, you must first select a thread and make one from there.</p>
+    <div class="container">
+        <div class="threadContainer">
+            <div class="threadInfo">
+                <label for="discussionTitle" class="threadInfo title"><?php echo($row['discussion_header'])?></label><br>
+                <label for="threadType" class="threadInfo info">Parent Thread: <?php echo($row['header'])?></label><br>
+                <label for="byUser " class="threadInfo info">By: <?php echo($row['username'])?></label><br>
+                <div class="discriptionDiv">
+                    <label for="discussionBody " class="threadInfo description"><?php echo($row['discussion_body'])?></label><br>
+                </div>
+            </div>
+            <div class="postBtn">
+                <a href="../create/newPost.php?id=<?php echo $id ?>" class="">
+                    <button class="btn" type="submit" name="" style="margin-left: 85%">Reply</button>
+                </a>
+            </div>
         </div>
+        
         <div class="catagoryFlex">
         <?php
             require_once "../index/index.php";
 
-            $query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id AND t.byUser_id = u.id ORDER BY header";
+            //$query = "SELECT p.*, d.discussion_header, u.username FROM `post` p, `discussion` d, `username` u WHERE d.id = $id AND p.discussion_id = d.id AND p.byUser_id = u.id";
+            $query = "SELECT p.*, u.username, d.discussion_header FROM `post` p, `user` u, `discussion` d WHERE d.id = $id AND p.byUser_id = u.id AND p.discussion_id = d.id";
             $result = mysqli_query($conn, $query);
             $row=mysqli_fetch_assoc($result);
 
@@ -112,12 +133,9 @@
         ?>
                 <a href="../data/thread.php?id=<?php echo($row['id'])?>" class="">
                     <div class="cards">
-                        <div class="discussionTitle" title="<?php echo($row['header'])?>"><?php echo($row['header'])?></div>
-                        <div class="parentThread">Category: <?php echo($row['name']) ?></div>
-                        <div class="userPoster">by: <?php echo($row['username']) ?></div>
+                        <div class="userPoster">By: <?php echo($row['username']) ?></div>
                         <div class="lastActive"><?php echo($row['date_created']) ?></div>
-                        <div class="cardContent"><?php echo($row['body']) ?></div>
-                        <div class="readMore">Read More...</div>
+                        <div class="cardContent"><?php echo($row['post_body']) ?></div>
                     </div>
                 </a>
                 

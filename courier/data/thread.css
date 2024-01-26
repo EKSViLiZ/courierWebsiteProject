@@ -1,20 +1,15 @@
 body{
     background-color: #dadada;
+    overflow-y: scroll;
+    min-height: 100vh;
 }
+html{height: 100vh;}
+
+html { overflow-y:hidden; }
 
 a, a:hover, a:focus, a:active{
     text-decoration: none;
     color: inherit;
-}
-
-input[type=text]:focus {
-    outline: none;
-    border: 1px solid #555;
-}
-
-textarea:focus {
-    outline: none;
-    border: 1px solid #555;
 }
 
 .topPanel{
@@ -50,36 +45,6 @@ textarea:focus {
     height: 17px;
     border-radius: 8px;
 }
-.userProfile{
-    top: 20%;
-    margin-right: 4rem;
-    padding-right: 20px;
-    position: relative;
-    float: right;
-}
-
-.guestStatus{
-    width: 100%;
-    color: #dadada;
-    position: relative;
-    float: right;
-    text-align: center;
-    padding-bottom: 4px;
-}
-
-.registry{
-    position: relative;
-}
-
-.signup{
-    position: relative;
-    float: right;
-}
-
-.login{
-    position: relative;
-    float: right;
-}
 
 .sidePanelLeft{
     position: fixed;
@@ -104,13 +69,24 @@ textarea:focus {
     left: 1rem;
 }
 
-.containerPrimary{
-    top: 5rem;
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 975px;
+    height: auto;
+
+    border-radius: 8px;
+    background: #f5f5f5; 
+    padding: 20px 80px 20px 80px;
+
     position: relative;
-    margin-left: 12rem;
-    width: 970px;
-    
-    z-index: 0;
+    left: 14rem;
+    top: 5rem;
+
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;   
 }
 
 .catagory{
@@ -244,6 +220,7 @@ textarea:focus {
     font-weight: 600;
     line-height: normal;
     letter-spacing: 1px;
+
 }
 
 .navigationSelected{
@@ -316,7 +293,7 @@ textarea:focus {
 .discussionTitle{
     position: relative;
     width: 295px;
-    height: 20px;
+    height: 17px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -433,55 +410,6 @@ textarea:focus {
     line-height: normal;
 }
 
-.container{
-    width: 975px;
-    height: 585px;
-
-    border-radius: 8px;
-    background: #f5f5f5; 
-    padding-top: 12px;
-    padding-left: 80px;
-    padding-right: 80px;
-
-    position: relative;
-    left: 14rem;
-    top: 5rem;
-
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;   
-}
-
-.titleTxtBox{  
-    position: relative;
-    border: 1px solid #ccc;
-    width: 795px;
-    height: 24px;
-    border-radius: 4px;
-    margin-top: -1rem;
-    font-size: 18px;
-    
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.contentTxtBox{
-    position: relative;
-    border: 1px solid #ccc;
-    width: 795px;
-    height: 355px;
-    resize: none;
-    border-radius: 4px;
-    margin-top: 5px;
-    font-size: 16px;
-    
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
 
 .sidenav {
   height: 140px;
@@ -551,6 +479,7 @@ textarea:focus {
     cursor: pointer;
 }
 
+
 .userProfile{
     top: 20%;
     margin-right: 4rem;
@@ -580,78 +509,37 @@ textarea:focus {
     float: right;
     left: 65px;
     top: -2px;
-    
 }
 
-.btn{
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 1rem;
+.threadInfo{
+    border-radius: 8px; 
 
-    color: #303030;
-    text-align: center;
-    font-family: inter;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: 0.8px;
-
-    background: #f5f5f5; 
-    font-size: 20px;
-    border-color: #e2454a;
-    border-radius: 10px;
-
-    height: 35px;
-    width: 118px;
-
-    cursor: pointer;
-}
-
-.btn:hover{
-    color: #303030;
-    background: #eaeaea;
-}
-
-.alert{
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    letter-spacing: 1px; 
-}
-
-.alertError{
-    color: #E2454A;
-}
-
-.alertPrimaryCenter{
-    position: absolute;
-    top: 35.5rem;
-    z-index: 1;
-    left: 46%;
-    transform: translateX(-50%);
-}
-
-.alertSuccess{
-    color: #2e9a2e;
-}
-
-.containerHeader{
-    position: relative;
-    border-radius: 4px;
-    
-    top: 15px;
-    margin-top: -1rem;
-    font-size: 24px;
-    
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
     font-family: Inter;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500px;
     line-height: normal;
 }
 
-.titleDiv{
-    text-align: center;
-    height: 60px;
+.title{
+    color: #000;
+    font-size: 26px;
+}
+
+.info{
+    color: #505050;
+    font-size: 16px;
+}
+
+.description{
+    color: #000;
+    font-size: 18px;
+    padding-left: 20px;
+    letter-spacing: 0.1px;
+}
+
+.discriptionDiv{
+    padding: 10px 25px 10px 25px;
 }

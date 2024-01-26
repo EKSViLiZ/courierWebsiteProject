@@ -6,6 +6,49 @@
         header("Location: ../usertype/guest/home.php");
     }
     
+    require_once "../index/index.php";
+    
+    if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    
+    $query = "SELECT * FROM  `thread` WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+    $row=mysqli_fetch_assoc($result);
+    }
+    
+    $parentThreadHeader = $row['header'];
+    
+    if (isset($_POST["submit"])) {
+        $title = $_POST["title"];
+        $content = $_POST["content"];
+        $byUser = $_SESSION['id'];
+        $dateCreated = date('Y-m-d H:i:s');
+        $thread_id = $id;
+        
+        $sql = "INSERT INTO `discussion` (discussion_header, discussion_body, thread_id, byUser_id, lastActive, date_created) VALUES (? ,? ,? ,? ,? ,?)";
+        $stmt = mysqli_stmt_init($conn);
+        $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
+        
+        if (!empty($title)){
+            if (!empty($content)){
+                if ($prepareStmt) {
+                    mysqli_stmt_bind_param($stmt, "ssiiss", $title, $content, $thread_id, $byUser, $dateCreated, $dateCreated);
+                    mysqli_stmt_execute($stmt);
+                    $query = "SELECT * FROM `discussion` ORDER BY id DESC LIMIT 1";
+                    $result = mysqli_query($conn, $query);
+                    $row = mysqli_fetch_assoc($result);
+                    $discussion_id = ($row['id']);
+                    header("Location: ../data/discussion.php?id=$discussion_id");
+                } else {
+                    die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
+                }
+            } else {
+                echo ("<div class='alert alertError alertPrimaryCenter'>*Content must not be empty*</div>");
+            }
+        } else {
+            echo ("<div class='alert alertError alertPrimaryCenter'>*Title must not be empty*</div>");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,12 +135,17 @@
             <a href="newThread.php"><button class="createBtn">Create New Thread</button></a>
         </div>
     </div>
-    <form action="newDiscussion.php" class="container" method="post">  
-        <label for="thread" class="p1">Thread:</label>
+    <form action="newDiscussion2.php?id=<?php echo($id)?> " class="container" method="post">
+        <div class="titleDiv">
+            <label for="containerHeader" class="containerHeader">Create a Discussion</label>
+        </div>
+        <?php
+        ?>
+        <label for="thread" class="p1">Thread: <?php echo $parentThreadHeader?></label>
         <p>
         <input type="text" class="titleTxtBox" id="title" name="title" placeholder="Discussion Title">
-        <textarea class="contentTxtBox" id="content" name="title" placeholder="Discussion Content"></textarea></p>
-        <button class="post">Post</button>
+        <textarea class="contentTxtBox" id="content" name="content" placeholder="Discussion Content"></textarea></p>
+        <button class="btn" type="submit" name="submit" style="margin-left: 40%">Post</button>
     </form>
     
     <div class="footer">

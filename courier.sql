@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2024 at 02:03 PM
+-- Generation Time: Jan 26, 2024 at 05:47 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -302,8 +302,34 @@ CREATE TABLE `discussion` (
   `discussion_body` text DEFAULT NULL,
   `thread_id` int(11) DEFAULT NULL,
   `byUser_id` int(11) DEFAULT NULL,
-  `lastActive` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `lastActive` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_created` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `discussion`
+--
+
+INSERT INTO `discussion` (`id`, `discussion_header`, `discussion_body`, `thread_id`, `byUser_id`, `lastActive`, `date_created`) VALUES
+(1, 'asdf', 'asdfasdf', NULL, 1, '2024-01-25 18:37:41', '2024-01-26'),
+(2, 'asdf', 'asdf', NULL, 1, '2024-01-25 18:50:33', '2024-01-26'),
+(3, 'asdfasdf', 'asdfasdf', NULL, 1, '2024-01-25 18:51:37', '2024-01-26'),
+(4, 'asdfasdf', 'asdfasdfasdf', NULL, 1, '2024-01-25 18:51:50', '2024-01-26'),
+(5, 'asdfasdf', 'asdfasdfasdf', NULL, 1, '2024-01-25 18:52:33', '2024-01-26'),
+(6, 'asdf', 'asdf', NULL, 1, '2024-01-25 18:52:42', '2024-01-26'),
+(7, 'Number 7', 'The 7', NULL, 1, '2024-01-25 18:54:14', '2024-01-26'),
+(8, 'World', 'Hello', NULL, 1, '2024-01-25 18:54:43', '2024-01-26'),
+(9, 'asdf', 'dsf', NULL, 1, '2024-01-25 18:55:27', '2024-01-26'),
+(10, 'ddd', 'ddd', NULL, 1, '2024-01-25 19:02:50', '2024-01-26'),
+(11, 'ss', 'ss', NULL, 1, '2024-01-25 19:03:17', '2024-01-26'),
+(12, 'string', 'array', NULL, 1, '2024-01-25 19:05:20', '2024-01-26'),
+(13, '13', '13', NULL, 1, '2024-01-25 19:05:56', '2024-01-26'),
+(14, '14', 'Fourteen', 3, 1, '2024-01-26 02:16:10', '2024-01-26'),
+(15, 'Asdf is the THread Name', 'Content', NULL, 1, '2024-01-25 19:17:29', '2024-01-26'),
+(16, 'Asdf is the Parent Thread', 'Body', 5, 1, '2024-01-25 19:18:18', '2024-01-26'),
+(17, 'Vtuber Sucks', 'I hate Vtubers.', 7, 1, '2024-01-25 19:28:11', '2024-01-26'),
+(18, 'Gay', 'Biggest Gay', 7, 1, '2024-01-25 19:45:00', '2024-01-26'),
+(19, 'Boku No Hero', 'Gay Shipping Momen', 9, 1, '2024-01-25 20:03:55', '2024-01-26');
 
 -- --------------------------------------------------------
 
@@ -317,8 +343,18 @@ CREATE TABLE `post` (
   `discussion_id` int(11) DEFAULT NULL,
   `likes` int(11) DEFAULT NULL,
   `dislikes` int(11) DEFAULT NULL,
+  `byUser_id` int(11) DEFAULT NULL,
   `date_created` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `post_body`, `discussion_id`, `likes`, `dislikes`, `byUser_id`, `date_created`) VALUES
+(1, 'Hello World', 19, NULL, NULL, 1, '2024-01-26'),
+(2, 'I also don\'t like boku no hero', 19, NULL, NULL, 1, '2024-01-26'),
+(3, 'I don\'t think boku no hero is a good anime.\r\n', 19, NULL, NULL, 1, '2024-01-26');
 
 -- --------------------------------------------------------
 
@@ -343,7 +379,13 @@ CREATE TABLE `thread` (
 
 INSERT INTO `thread` (`id`, `header`, `body`, `byUser_id`, `thread_type_id`, `followBy_id`, `viewBy`, `date_created`) VALUES
 (2, 'First Thread', 'Hello World', 1, 9, NULL, NULL, '2024-01-25'),
-(3, 'Caves Exploring', 'Everything about cave exploring.', 4, 8, NULL, NULL, '2024-01-25');
+(3, 'Caves Exploring', 'Everything about cave exploring.', 4, 8, NULL, NULL, '2024-01-25'),
+(4, 'Hats', 'Hats, all kind of hats', 2, 4, NULL, NULL, '2024-01-25'),
+(5, 'asdf', 'asdfasdf', 2, 9, NULL, NULL, '2024-01-25'),
+(6, '2nd', 'my most second post', 1, 9, NULL, NULL, '2024-01-25'),
+(7, 'GayTuber', 'trebuchet, siege engine utilizing a long arm and the principles of leverage to launch projectiles. The trebuchet was one of the top choices for artillery in ancient and medieval warfare, having the ability to throw heavier projectiles farther than earlier catapults could.', 1, 7, NULL, NULL, '2024-01-25'),
+(8, 'Minecraft', 'The Game Minecraft.', 1, 3, NULL, NULL, '2024-01-25'),
+(9, 'Anime', 'General anime thread.', 1, 1, NULL, NULL, '2024-01-25');
 
 -- --------------------------------------------------------
 
@@ -440,7 +482,8 @@ ALTER TABLE `discussion`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `discussion_id` (`discussion_id`);
+  ADD KEY `discussion_id` (`discussion_id`),
+  ADD KEY `byUser_id` (`byUser_id`);
 
 --
 -- Indexes for table `thread`
@@ -485,19 +528,19 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `discussion`
 --
 ALTER TABLE `discussion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `thread_type`
@@ -532,7 +575,8 @@ ALTER TABLE `discussion`
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`byUser_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `thread`
