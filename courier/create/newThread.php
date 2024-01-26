@@ -80,7 +80,7 @@
                     Home
                 </div>
             </a>
-            
+                        <!--
             <a href="followed.php">
                 <div class="navigationBtn navigationUnselected">
                     Followed
@@ -104,6 +104,7 @@
                     Recent
                 </div>
             </a>
+            -->
         </div>
         
     </div>

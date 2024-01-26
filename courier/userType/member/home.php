@@ -3,7 +3,7 @@
     session_start();
     
     if (!isset($_SESSION["user"])) {
-        header("Location: ../member/home.php");
+        header("Location: ../registry/start.php");
     }
     
 ?>
@@ -12,9 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courier - Home Page</title>
+    <title>Start a New Discussion!</title>
     
     <link rel="stylesheet" href="home.css">
+    
 </head>
 <body>
     <div class="topPanel">
@@ -51,6 +52,7 @@
                 </div>
             </a>
             
+            <!--
             <a href="followed.php">
                 <div class="navigationBtn navigationUnselected">
                     Followed
@@ -74,6 +76,7 @@
                     Recent
                 </div>
             </a>
+            -->
         </div>
         
     </div>
@@ -91,77 +94,48 @@
             <a href="../../create/newThread.php"><button class="createBtn">Create New Thread</button></a>
         </div>
     </div>
-    
     <div class="containerPrimary">
-        <div class="catagory">
-            <label class="primaryCategoryTitle">Followed Threads</label>
-            
-            <div class="catagoryFlex">
-            <?php
-                require_once "../../index/index.php";
-                $query = 'SELECT * FROM `discussion` ORDER BY id DESC LIMIT 3';
-                $result = mysqli_query($conn, $query);
-                
-                //$cardAmount is the number of rows in the table `post`.
-                $cardAmount = mysqli_num_rows($result);
-                if($cardAmount != 0){
-                    $x = 0;
-                    while($x < $cardAmount && $x < 3){
-                        while($row = mysqli_fetch_assoc($result)){
-            ?>          
-                        <div class="cards">
-                            <div class="discussionTitle"><?php echo($row['header'])?></div>
-                            <div class="parentThread">Parent Thread</div>
-                            <div class="userPoster">By User</div>
-                            <div class="lastActive">Last Active</div>
-                            <div class="cardContent">Card Content</div>
-                            <div class="readMore">Read More...</div>
-                        </div>
-            <?php
-                        }
-                        $x++;
-                    }
-                        if($cardAmount > 2){
-            ?>
-                            </div>
-                            <a href="followedThreads.php"><button class="showMoreBtn">Show More</button></a>
-            <?php
-                        }
-                }
-                else{
-                    ?>
-                    <div class="nothingDiv">
-                        <h class="header1">There is no currently available threads.</h>
-                        <p class="p1">Please retry again later or start your own thread.</p>
+        <label for="mainHeader" class="primaryCategoryTitle">Threads</label>
+        <div class="instruction">
+            <p class="p1">To start a discussion, you must first select a thread and make one from there.</p>
+        </div>
+        <div class="catagoryFlex">
+        <?php
+            require_once "../../index/index.php";
+
+            $query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id AND t.byUser_id = u.id ORDER BY header";
+            $result = mysqli_query($conn, $query);
+            $row=mysqli_fetch_assoc($result);
+
+            //Troubleshooting problem, The first card don't show up. And if there's no more than 1 card, nothing shows up.
+            $cardAmount = mysqli_num_rows($result);
+            if($cardAmount != 0){
+                do{ 
+        ?>
+                <a href="../../data/thread.php?id=<?php echo($row['id'])?>" class="">
+                    <div class="cards">
+                        <div class="discussionTitle" title="<?php echo($row['header'])?>"><?php echo($row['header'])?></div>
+                        <div class="parentThread">Category: <?php echo($row['name']) ?></div>
+                        <div class="userPoster">by: <?php echo($row['username']) ?></div>
+                        <div class="lastActive"><?php echo($row['date_created']) ?></div>
+                        <div class="cardContent"><?php echo($row['body']) ?></div>
+                        <div class="readMore">Read More...</div>
                     </div>
-                    <?php
+                </a>
+                
+                <?php
                 }
-            ?>    
-        </div>
-        
-        <div class="catagory">
-            <label class="primaryCategoryTitle">Visited Discussions</label>
-
-            <div class="cards">
-            </div>
-        </div>
-        
-        <div class="catagory">
-            <label class="primaryCategoryTitle">Popular Threads</label>
-
-            <div class="cards">
-                <label class="discussionTitle"></label>
-                <label class="parentThread"></label>
-                <label class="lastActive"></label>
-                <label class="cardContent"></label>
-            </div>
-        </div>
-        
-        <div class="catagory">
-            <label class="primaryCategoryTitle">Recent Discussions</label>
-
-            <div class="cards">
-            </div>
+            while($row = mysqli_fetch_assoc($result));
+            }
+            else{
+                ?>
+                <div class="nothingDiv">
+                    <h class="header1">There are no currently available threads.</h>
+                    <p class="p1">Please retry again later or start your own thread.</p>
+                </div>
+                <?php
+            }
+        ?>
         </div>
     </div>
     

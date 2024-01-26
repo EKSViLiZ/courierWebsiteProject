@@ -1,11 +1,10 @@
 body{
     background-color: #dadada;
-    overflow-y: scroll;
     min-height: 100vh;
 }
 html{height: 100vh;}
 
-html { overflow-y:hidden; }
+html { overflow-y:scroll; }
 
 a, a:hover, a:focus, a:active{
     text-decoration: none;
@@ -69,7 +68,7 @@ a, a:hover, a:focus, a:active{
     left: 1rem;
 }
 
-.container{
+.threadContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -109,20 +108,25 @@ a, a:hover, a:focus, a:active{
     letter-spacing: 1px;
 }
 
-.catagoryFlex{
-    display: flex;
+
+.catagoryFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  top: 85px;
+  left: 217px;
+  width: 995px;
 }
 
 .cards{
     position: relative;
     height: 250px;
-    width: auto;
-    margin-left: 8px;
-    margin-right: 8px;
+    width: 294px;
+    margin: 8px;
     background-color: #f5f5f5;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 8px;
 }
 
 .showMoreBtn{
@@ -292,8 +296,8 @@ a, a:hover, a:focus, a:active{
 
 .discussionTitle{
     position: relative;
-    width: 295px;
-    height: 17px;
+    width: 100%;
+    height: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -309,8 +313,8 @@ a, a:hover, a:focus, a:active{
 
 .parentThread{
     position: relative;
-    width: 295px;
-    height: 14px;
+    width: 100%;
+    height: auto;
     flex-shrink: 0;
         
     color: #505050;
@@ -323,8 +327,8 @@ a, a:hover, a:focus, a:active{
 
 .userPoster{
     position: relative;
-    width: 295px;
-    height: 14px;
+    width: 100%;
+    height: auto;
     flex-shrink: 0;
         
     color: #505050;
@@ -337,8 +341,8 @@ a, a:hover, a:focus, a:active{
 
 .lastActive{
     position: relative;
-    width: 295px;
-    height: 17px;
+    width: 100%;
+    height: auto;
     flex-shrink: 0;
     
     color: #000;
@@ -352,8 +356,8 @@ a, a:hover, a:focus, a:active{
 
 .cardContent{
     position: relative;
-    width: 295px;
-    height: 160px;
+    width: 90%;
+    height: 55%;
     flex-shrink: 0;
     
     color: #000;
@@ -362,12 +366,15 @@ a, a:hover, a:focus, a:active{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    
+    margin-top: 8px;
+    margin-left: 15px;
 }
 
 .readMore{
     position: relative;
-    width: 295px;
-    height: 14px;
+    width: 100%;
+    height: auto;
     flex-shrink: 0;
         
     color: #505050;
@@ -542,4 +549,14 @@ a, a:hover, a:focus, a:active{
 
 .discriptionDiv{
     padding: 10px 25px 10px 25px;
+}
+
+.postBtn{
+    position: relative;
+    width: 100%;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
 }

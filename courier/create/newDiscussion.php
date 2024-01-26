@@ -47,11 +47,11 @@
 
         <div class="navigationMenu">
             <a href="../userType/guest/home.php">
-                <div class="navigationBtn navigationUnselected">
+                <div class="navigationBtn navigationSelected">
                     Home
                 </div>
             </a>
-            
+                        <!--
             <a href="followed.php">
                 <div class="navigationBtn navigationUnselected">
                     Followed
@@ -75,6 +75,7 @@
                     Recent
                 </div>
             </a>
+            -->
         </div>
         
     </div>

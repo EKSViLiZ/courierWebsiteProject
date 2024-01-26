@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2024 at 05:47 AM
+-- Generation Time: Jan 26, 2024 at 08:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -311,25 +311,7 @@ CREATE TABLE `discussion` (
 --
 
 INSERT INTO `discussion` (`id`, `discussion_header`, `discussion_body`, `thread_id`, `byUser_id`, `lastActive`, `date_created`) VALUES
-(1, 'asdf', 'asdfasdf', NULL, 1, '2024-01-25 18:37:41', '2024-01-26'),
-(2, 'asdf', 'asdf', NULL, 1, '2024-01-25 18:50:33', '2024-01-26'),
-(3, 'asdfasdf', 'asdfasdf', NULL, 1, '2024-01-25 18:51:37', '2024-01-26'),
-(4, 'asdfasdf', 'asdfasdfasdf', NULL, 1, '2024-01-25 18:51:50', '2024-01-26'),
-(5, 'asdfasdf', 'asdfasdfasdf', NULL, 1, '2024-01-25 18:52:33', '2024-01-26'),
-(6, 'asdf', 'asdf', NULL, 1, '2024-01-25 18:52:42', '2024-01-26'),
-(7, 'Number 7', 'The 7', NULL, 1, '2024-01-25 18:54:14', '2024-01-26'),
-(8, 'World', 'Hello', NULL, 1, '2024-01-25 18:54:43', '2024-01-26'),
-(9, 'asdf', 'dsf', NULL, 1, '2024-01-25 18:55:27', '2024-01-26'),
-(10, 'ddd', 'ddd', NULL, 1, '2024-01-25 19:02:50', '2024-01-26'),
-(11, 'ss', 'ss', NULL, 1, '2024-01-25 19:03:17', '2024-01-26'),
-(12, 'string', 'array', NULL, 1, '2024-01-25 19:05:20', '2024-01-26'),
-(13, '13', '13', NULL, 1, '2024-01-25 19:05:56', '2024-01-26'),
-(14, '14', 'Fourteen', 3, 1, '2024-01-26 02:16:10', '2024-01-26'),
-(15, 'Asdf is the THread Name', 'Content', NULL, 1, '2024-01-25 19:17:29', '2024-01-26'),
-(16, 'Asdf is the Parent Thread', 'Body', 5, 1, '2024-01-25 19:18:18', '2024-01-26'),
-(17, 'Vtuber Sucks', 'I hate Vtubers.', 7, 1, '2024-01-25 19:28:11', '2024-01-26'),
-(18, 'Gay', 'Biggest Gay', 7, 1, '2024-01-25 19:45:00', '2024-01-26'),
-(19, 'Boku No Hero', 'Gay Shipping Momen', 9, 1, '2024-01-25 20:03:55', '2024-01-26');
+(27, 'Discussion Title Example', 'Discussion Content Example', 12, 6, '2024-01-26 00:38:07', '2024-01-26');
 
 -- --------------------------------------------------------
 
@@ -352,9 +334,7 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `post_body`, `discussion_id`, `likes`, `dislikes`, `byUser_id`, `date_created`) VALUES
-(1, 'Hello World', 19, NULL, NULL, 1, '2024-01-26'),
-(2, 'I also don\'t like boku no hero', 19, NULL, NULL, 1, '2024-01-26'),
-(3, 'I don\'t think boku no hero is a good anime.\r\n', 19, NULL, NULL, 1, '2024-01-26');
+(23, 'Reply goes here.', 27, NULL, NULL, 6, '2024-01-26');
 
 -- --------------------------------------------------------
 
@@ -378,14 +358,19 @@ CREATE TABLE `thread` (
 --
 
 INSERT INTO `thread` (`id`, `header`, `body`, `byUser_id`, `thread_type_id`, `followBy_id`, `viewBy`, `date_created`) VALUES
-(2, 'First Thread', 'Hello World', 1, 9, NULL, NULL, '2024-01-25'),
-(3, 'Caves Exploring', 'Everything about cave exploring.', 4, 8, NULL, NULL, '2024-01-25'),
-(4, 'Hats', 'Hats, all kind of hats', 2, 4, NULL, NULL, '2024-01-25'),
-(5, 'asdf', 'asdfasdf', 2, 9, NULL, NULL, '2024-01-25'),
-(6, '2nd', 'my most second post', 1, 9, NULL, NULL, '2024-01-25'),
-(7, 'GayTuber', 'trebuchet, siege engine utilizing a long arm and the principles of leverage to launch projectiles. The trebuchet was one of the top choices for artillery in ancient and medieval warfare, having the ability to throw heavier projectiles farther than earlier catapults could.', 1, 7, NULL, NULL, '2024-01-25'),
-(8, 'Minecraft', 'The Game Minecraft.', 1, 3, NULL, NULL, '2024-01-25'),
-(9, 'Anime', 'General anime thread.', 1, 1, NULL, NULL, '2024-01-25');
+(12, 'Test Thread 001', 'Test Description 001', 6, 9, NULL, NULL, '2024-01-26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `threadfollow`
+--
+
+CREATE TABLE `threadfollow` (
+  `id` int(11) NOT NULL,
+  `followedBy_id` int(11) DEFAULT NULL,
+  `following_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -435,10 +420,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `country_id`, `usertype_id`, `date_created`, `birthday`) VALUES
-(1, 'asdf', 'asdf@gmail.com', '$2y$10$C5XrJ9Z8zKknCnGZHMQJSOtm9qX.YlMRRCdG6Ec81QwSYyxY8euu2', 2, NULL, NULL, NULL),
-(2, 'John Doe', 'JohnDoe@gmail.com', '$2y$10$oA8y8E8nW9cQJqDu16yq4Og2KI4iUX/C1klagFQ6UavAiiv4LSTa6', NULL, NULL, '0000-00-00', NULL),
-(3, 'MedicTF@', 'medic@gmail.com', '$2y$10$ef16neQeMs03mwFgnpVOtu9KxLdVDgMaH4YvdsCauKG0GtsiiOUva', 3, NULL, '2024-01-25', NULL),
-(4, 'asdfasdf', 'asdfasdf@gmail.com', '$2y$10$jFJ1t/OFESNt8YN3twIfweISoGeLp.r55g7cxmrAhF6cHZVFNwm66', 15, NULL, '2024-01-25', NULL);
+(6, 'TestUser', 'Test@gmail.com', '$2y$10$EJbKzgNrB5TgXSyI3gDLo.T6pcjpXf3UgmridTq5WQ7JEPNw4LhSC', 27, NULL, '2024-01-26', NULL);
 
 -- --------------------------------------------------------
 
@@ -495,6 +477,14 @@ ALTER TABLE `thread`
   ADD KEY `thread_type_id` (`thread_type_id`);
 
 --
+-- Indexes for table `threadfollow`
+--
+ALTER TABLE `threadfollow`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `followedBy_id` (`followedBy_id`),
+  ADD KEY `following_id` (`following_id`);
+
+--
 -- Indexes for table `thread_type`
 --
 ALTER TABLE `thread_type`
@@ -528,19 +518,25 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `discussion`
 --
 ALTER TABLE `discussion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `threadfollow`
+--
+ALTER TABLE `threadfollow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `thread_type`
@@ -552,7 +548,7 @@ ALTER TABLE `thread_type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `usertype`
@@ -585,6 +581,13 @@ ALTER TABLE `thread`
   ADD CONSTRAINT `thread_ibfk_1` FOREIGN KEY (`byUser_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `thread_ibfk_2` FOREIGN KEY (`followBy_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `thread_ibfk_3` FOREIGN KEY (`thread_type_id`) REFERENCES `thread_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `threadfollow`
+--
+ALTER TABLE `threadfollow`
+  ADD CONSTRAINT `threadfollow_ibfk_1` FOREIGN KEY (`followedBy_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `threadfollow_ibfk_2` FOREIGN KEY (`following_id`) REFERENCES `thread` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`

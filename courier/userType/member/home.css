@@ -1,11 +1,6 @@
 body{
     background-color: #dadada;
-    overflow-y: scroll;
-    min-height: 100vh;
 }
-html{height: 100vh;}
-
-html { overflow-y:hidden; }
 
 a, a:hover, a:focus, a:active{
     text-decoration: none;
@@ -44,6 +39,36 @@ a, a:hover, a:focus, a:active{
     width: 350px;
     height: 17px;
     border-radius: 8px;
+}
+.userProfile{
+    top: 20%;
+    margin-right: 4rem;
+    padding-right: 20px;
+    position: relative;
+    float: right;
+}
+
+.guestStatus{
+    width: 100%;
+    color: #dadada;
+    position: relative;
+    float: right;
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+.registry{
+    position: relative;
+}
+
+.signup{
+    position: relative;
+    float: right;
+}
+
+.login{
+    position: relative;
+    float: right;
 }
 
 .sidePanelLeft{
@@ -100,18 +125,19 @@ a, a:hover, a:focus, a:active{
 
 .catagoryFlex{
     display: flex;
+    flex-wrap: wrap;
+    width: 1025px;
+    margin-bottom: 16px;
 }
 
 .cards{
     position: relative;
     height: 250px;
     width: auto;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin: 8px;
     background-color: #f5f5f5;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 8px;
 }
 
 .showMoreBtn{
@@ -209,7 +235,6 @@ a, a:hover, a:focus, a:active{
     font-weight: 600;
     line-height: normal;
     letter-spacing: 1px;
-
 }
 
 .navigationSelected{
@@ -282,7 +307,7 @@ a, a:hover, a:focus, a:active{
 .discussionTitle{
     position: relative;
     width: 295px;
-    height: 17px;
+    height: 22px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -315,6 +340,7 @@ a, a:hover, a:focus, a:active{
     width: 295px;
     height: 14px;
     flex-shrink: 0;
+    margin-top: 3px;
         
     color: #505050;
     font-family: Inter;
@@ -342,8 +368,11 @@ a, a:hover, a:focus, a:active{
 .cardContent{
     position: relative;
     width: 295px;
-    height: 160px;
+    height: 150px;
     flex-shrink: 0;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
     color: #000;
     font-family: Inter;
@@ -375,7 +404,7 @@ a, a:hover, a:focus, a:active{
 .nothingDiv{
     position: relative;
     text-align: center;
-    padding-top: 25px;
+    padding-top: 20%;
     width: 980px;
     height: 100px;
     flex-shrink: 0;
@@ -399,8 +428,32 @@ a, a:hover, a:focus, a:active{
     line-height: normal;
 }
 
+.instruction{
+    margin-top: -1%;
+    margin-left: 2%;
+}
+
+.container{
+    width: 975px;
+    height: 585px;
+
+    border-radius: 8px;
+    background: #f5f5f5; 
+    padding-top: 12px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    position: relative;
+    left: 14rem;
+    top: 5rem;
+
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;   
+}
 
 .sidenav {
+    position: relative;
   height: 140px;
   width: 0;
   position: fixed; 
@@ -468,7 +521,6 @@ a, a:hover, a:focus, a:active{
     cursor: pointer;
 }
 
-
 .userProfile{
     top: 20%;
     margin-right: 4rem;
@@ -500,4 +552,3 @@ a, a:hover, a:focus, a:active{
     top: -2px;
     
 }
-

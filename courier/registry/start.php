@@ -38,14 +38,15 @@
                  and they are free to use this platform as a means to share there ideas.
             </p>
         </div>
-
-        <div class="registryMsg">
-            <p>
-                While you can access the website without needing to login, 
-                <br>
-                Most actions would require an Account.
-            </p>
-        </div>
+        <!--
+            <div class="registryMsg">
+                <p>
+                    While you can access the website without needing to login, 
+                    <br>
+                    Most actions would require an Account.
+                </p>
+            </div>
+        -->
         
         <div class="newToCourier">
             <p><b>New to Courier?</b></p>
@@ -62,7 +63,8 @@
         </div>
 
         <a href="login.php"><button class="btn loginBtn">Login</button></a>
-
+        
+        <!--
         <div class="orDivide">
             <p>--------------- OR ---------------</p>
         </div>
@@ -70,6 +72,7 @@
         <p class="continueAsGuest"><b>Continue</b></p>
 
         <a href="../userType/guest/home.php"><button class="btn guestBtn">As Guest</button></a>
+        -->
     </div>
 
     <div class="footer"></div>

@@ -2,6 +2,7 @@
     /*Checks if User is already Logged In*/
     session_start();
     
+    
     if (!isset($_SESSION["user"])) {
         header("Location: ../member/home.php");
     }
@@ -59,7 +60,7 @@
                     Home
                 </div>
             </a>
-            
+                        <!--
             <a href="followed.php">
                 <div class="navigationBtn navigationUnselected">
                     Followed
@@ -83,6 +84,7 @@
                     Recent
                 </div>
             </a>
+            -->
         </div>
         
     </div>
@@ -102,13 +104,57 @@
     </div>
     
     <div class="container">
-        <div class="threadInfo">
-            <label for="threadTitle" class="threadInfo title"><?php echo($row['header'])?></label><br>
-            <label for="threadType" class="threadInfo info">Category: <?php echo($row['name'])?></label><br>
-            <label for="byUser " class="threadInfo info">By: <?php echo($row['username'])?></label><br>
-            <div class="discriptionDiv">
-                <label for="threadDescription " class="threadInfo description"><?php echo($row['body'])?></label><br>
+        <div class="threadContainer">
+            <div class="threadInfo">
+                <label for="threadTitle" class="threadInfo title"><?php echo($row['header'])?></label><br>
+                <label for="threadType" class="threadInfo info">Category: <?php echo($row['name'])?></label><br>
+                <a href="profile.php?id=<?php echo($row['byUser_id'])?>">
+                    <label for="byUser " class="threadInfo info">By: <?php echo($row['username'])?></label><br>
+                </a>
+                <div class="lastActive"><?php echo($row['date_created']) ?></div>
+                <div class="discriptionDiv">
+                    <label for="threadDescription " class="threadInfo description"><?php echo($row['body'])?></label><br>
+                </div>
             </div>
+        </div>
+        
+        <div class="catagoryFlex">
+                <?php
+            require_once "../index/index.php";
+
+            //$query = "SELECT t.*, t_type.name, u.username FROM `thread` t, `thread_type` t_type, `user` u WHERE t.thread_type_id = t_type.id AND t.byUser_id = u.id ORDER BY header";
+            $query = "SELECT d.*, t.header, u.username FROM `discussion` d, `thread` t, `user` u where t.id = d.thread_id AND t.id = $id AND d.byUser_id = u.id";
+            $result = mysqli_query($conn, $query);
+            $row=mysqli_fetch_assoc($result);
+
+            //Troubleshooting problem, The first card don't show up. And if there's no more than 1 card, nothing shows up.
+            $cardAmount = mysqli_num_rows($result);
+            if($cardAmount != 0){
+                do{ 
+        ?>
+                <a href="discussion.php?id=<?php echo($row['id'])?>" class="">
+                    <div class="cards">
+                        <div class="discussionTitle" title="<?php echo($row['discussion_header'])?>"><?php echo($row['discussion_header'])?></div>
+                        <div class="parentThread">Parent Thread: <?php echo($row['header']) ?></div>
+                        <div class="userPoster">by: <?php echo($row['username']) ?></div>
+                        <div class="lastActive"><?php echo($row['date_created']) ?></div>
+                        <div class="cardContent"><?php echo($row['discussion_body']) ?></div>
+                        <div class="readMore">Read More...</div>
+                    </div>
+                </a>
+                
+                <?php
+                }
+            while($row = mysqli_fetch_assoc($result));
+            }
+            else{
+                ?>
+                <div class="nothingDiv">
+                    <h class="header1">There are no Discussions for this thread yet.</h>
+                </div>
+                <?php
+            }
+        ?>
         </div>
     </div>
     

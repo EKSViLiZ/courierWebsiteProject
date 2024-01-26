@@ -52,7 +52,7 @@
                     Home
                 </div>
             </a>
-            
+                        <!--
             <a href="followed.php">
                 <div class="navigationBtn navigationUnselected">
                     Followed
@@ -76,6 +76,7 @@
                     Recent
                 </div>
             </a>
+            -->
         </div>
         
     </div>
@@ -126,12 +127,13 @@
             </div>
         </div>
         <div class="profileRecentPost">
-            <label for="" class="primaryCategoryTitle">Recent Posts:</label>
+            <label for="" class="primaryCategoryTitle">Recent Discussions:</label>
             <div class="flexCards">
                 <?php
                     require_once "../index/index.php";
 
-                    $query = "SELECT t.date_created AS thread_date_created, t.*, t_type.name, u.* FROM `thread` t, `thread_type` t_type, `user` u WHERE t_type.id = t.thread_type_id AND t.byUser_id = u.id AND u.id = $id ORDER BY t.id DESC LIMIT 3";
+                    //$query = "SELECT t.date_created AS thread_date_created, t.*, t_type.name, u.* FROM `thread` t, `thread_type` t_type, `user` u WHERE t_type.id = t.thread_type_id AND t.byUser_id = u.id AND u.id = $id ORDER BY t.id DESC LIMIT 3";
+                    $query = "SELECT d.date_created AS discussion_date_created, d.*, t.header, u.username FROM `discussion` d, `thread` t, `user` u WHERE u.id = $id AND d.thread_id = t.id AND d.byUser_id = u.id ORDER BY d.id DESC LIMIT 3";
                     $result = mysqli_query($conn, $query);
                     $row=mysqli_fetch_assoc($result);
 
@@ -139,14 +141,16 @@
                     if($cardAmount != 0){
                         do{ 
                 ?>
-                        <div class="cards">
-                            <div class="discussionTitle" title="<?php echo($row['header'])?>"><?php echo($row['header'])?></div>
-                            <div class="parentThread">Category: <?php echo($row['name']) ?></div>
-                            <div class="userPoster">by: <?php echo($row['username']) ?></div>
-                            <div class="lastActive"><?php echo($row['thread_date_created']) ?></div>
-                            <div class="cardContent"><?php echo($row['body']) ?></div>
-                            <div class="readMore">Read More...</div>
-                        </div>
+                        <a href="discussion.php?id=<?php echo($row['id'])?>" class="">
+                            <div class="cards">
+                                <div class="discussionTitle" title="<?php echo($row['discussion_header'])?>"><?php echo($row['discussion_header'])?></div>
+                                <div class="parentThread">Parent Thread: <?php echo($row['header']) ?></div>
+                                <div class="userPoster">by: <?php echo($row['username']) ?></div>
+                                <div class="lastActive"><?php echo($row['discussion_date_created']) ?></div>
+                                <div class="cardContent"><?php echo($row['discussion_body']) ?></div>
+                                <div class="readMore">Read More...</div>
+                            </div>
+                        </a>    
                         <?php
                         }
                     while($row = mysqli_fetch_assoc($result));
@@ -154,8 +158,7 @@
                     else{
                         ?>
                         <div class="nothingDiv">
-                            <h class="header1">There is no currently available threads.</h>
-                            <p class="p1">Please retry again later or start your own thread.</p>
+                            <h class="header1">This user has yet to make any Discussion.</h>
                         </div>
                     <?php
                 }

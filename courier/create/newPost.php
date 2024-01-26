@@ -37,8 +37,7 @@
                 $query = "SELECT * FROM `discussion` ORDER BY id DESC LIMIT 1";
                 $result = mysqli_query($conn, $query);
                 $row = mysqli_fetch_assoc($result);
-                $discussion_id = ($row['id']);
-                header("Location: ../data/discussion.php?id=$discussion_id");
+                header("Location: ../data/discussion.php?id=$id");
             } else {
                 die("<div class='alert alertError alertPrimaryCenter'>Something went wrong!</div>");
             }
@@ -91,7 +90,7 @@
                     Home
                 </div>
             </a>
-            
+                        <!--
             <a href="followed.php">
                 <div class="navigationBtn navigationUnselected">
                     Followed
@@ -115,6 +114,7 @@
                     Recent
                 </div>
             </a>
+            -->
         </div>
         
     </div>
